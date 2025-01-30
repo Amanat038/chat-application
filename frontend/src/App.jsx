@@ -32,7 +32,6 @@ function App() {
       const socket = io('http://localhost:5000', { query: { userId: authUser._id } });
 
       dispatch(setSocket(socket))
-
       socket.on('getOnlineUser',(onlineUsers) => {
         dispatch(setOnlineUsers(onlineUsers))
       });
@@ -56,3 +55,9 @@ function App() {
 }
 
 export default App
+
+
+
+
+
+

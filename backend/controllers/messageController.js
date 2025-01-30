@@ -45,8 +45,7 @@ export const sendMessage = async (req, res) => {
       const receiverSocketId = getReceiverSocketId(receiverId)
 
       if(receiverSocketId){
-        io.to(receiverSocketId).emit("newMessage",newMessage
-          );
+        io.to(receiverSocketId).emit("newMessage",newMessage);
       }
 
 
@@ -109,5 +108,37 @@ export const getMessage = async (req, res) => {
 
   }
 }
+
+
+export const editMessage = async (req, res) => {
+  try {
+    const { id } = req.params;
+    console.log("Request Body:", req.body); 
+    const { newMessage } = req.body;
+    
+    console.log("Updating message ID:", id);
+    console.log("New message content:", newMessage);
+
+    const updatedMessage = await Message.findByIdAndUpdate(
+      id,
+      { message: newMessage },
+      { new: true }
+    );
+
+    if (!updatedMessage) {
+      console.log("Message not found");
+      return res.status(404).json({ message: "Message not found" });
+    }
+
+    console.log("Updated message:", updatedMessage);
+    res.json(updatedMessage);
+  } catch (error) {
+    console.error("Error updating message:", error);
+    res.status(500).json({ message: "Error updating message", error });
+  }
+};
+
+
+
 
 

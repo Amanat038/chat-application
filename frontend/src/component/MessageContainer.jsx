@@ -13,7 +13,7 @@ const MessageContainer = () => {
 
    const isOnline = onlineUsers.includes(selectedUser?._id);
    return (
-      <div className="flex flex-col flex-1 h-full  p-4 bg-gray-900 text-white md:max-w-[60%]">
+      <div className="flex flex-col flex-1 h-full  p-4 bg-gray-900 text-white md:max-w-[60%] messageCont">
          {selectedUser ? (
             <>
                <div className="flex items-center gap-4 py-2 bg-gray-800 rounded-lg shadow-lg px-9 md:p-2">
