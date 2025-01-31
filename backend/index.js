@@ -9,7 +9,7 @@ import cors from "cors";
 import { app,server } from "./socket/socket.js";
 
 dotenv.config();
-// const app = express();
+
 const PORT = process.env.PORT || 8080;
 
 // Middleware
@@ -18,34 +18,12 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cookieParser());
 
-// const corsOption = {
-//    origin: [
-//     "http://localhost:5173", 
-//     "https://your-production-frontend.com", 
-//   ],
-//   credentials: true,
-// };
-// app.use(cors(corsOption));
-
-
-
-// CORS Setup
-const allowedOrigins = [
-  "http://localhost:5173",
-  process.env.CLIENT_ORIGIN
-];
-
 const corsOption = {
-  origin: (origin, callback) => {
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error("Not allowed by CORS"));
-    }
-  },
-  credentials: true,
+   origin:["https://chat-application.netlify.app","http://localhost:5173/"],
+   credentials: true,
 };
 app.use(cors(corsOption));
+
 
 
 // Routes

@@ -10,7 +10,7 @@ import { setOnlineUsers } from "./redux/userSlice";
 
 const router = createBrowserRouter([
   {
-    path:'/',
+    path:'/home',
     element:<Homepage />
   },
   {
@@ -18,7 +18,7 @@ const router = createBrowserRouter([
     element:<Signup/>
   },
   {
-    path:"/Login",
+    path:"/",
     element:<Login/>
   }
 ])
@@ -29,7 +29,7 @@ function App() {
   const dispatch  = useDispatch()
   useEffect(() => {
     if(authUser){
-      const socket = io('http://localhost:5000', { query: { userId: authUser._id } });
+      const socket = io('http://localhost:5000/', { query: { userId: authUser._id } });
 
       dispatch(setSocket(socket))
       socket.on('getOnlineUser',(onlineUsers) => {

@@ -20,9 +20,12 @@ const Sidebar = () => {
       try {
          axios.defaults.withCredentials = true;
          const res = await axios.get(`http://localhost:5000/api/v1/user/logout`);
-         navigate("/login");
+         
+         navigate("/");
          toast.success(res.data.message);
          dispatch(setAuthUser(null));
+
+        
       } catch (e) {
          console.log(e);
       }

@@ -12,21 +12,24 @@ const Login = () => {
    });
       const dispatch = useDispatch();
    const navigate = useNavigate();
-
+   const token = localStorage.getItem("token");
+   console.log(token);
    const onSubmitHandler = async (e) => {
       e.preventDefault();
       console.log(user);
       try {
          const res = await axios.post(
-            "http://localhost:5000/api/v1/user/login",
+            `http://localhost:5000/api/v1/user/login`,
             user,
             {
-               headers: {
-                  "Content-Type": "application/json",
-               },
-               withCredentials: true,
+              
+                  headers: {
+                     "Content-Type": "application/json",
+                  },
+                  withCredentials: true, 
             }
          );
+         localStorage.setItem("token", res.data.token);
         
          if (res.data.success) {
             dispatch(setAuthUser(res.data));
@@ -34,8 +37,9 @@ const Login = () => {
             setUser({
               username: "",
               password: "",
+              
             });
-            navigate("/");
+            navigate("/home");
          } else {
             toast.error(res.data.message); // Show toast for error messages like "User already exists"
          }

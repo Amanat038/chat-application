@@ -36,14 +36,14 @@ export const getReceiverSocketId = (receiverId) => {
 
 // Socket.IO connection
 io.on("connection", (socket) => {
-  console.log("User connected:", socket.id);
+  
 
   const userId = socket.handshake.query.userId;
 
   if (userId) {
     
     if (userSocketMap[userId]) {
-      console.log(`User ${userId} reconnected. Cleaning up old socket ID.`);
+    
     }
 
     userSocketMap[userId] = socket.id; 
@@ -58,7 +58,7 @@ io.on("connection", (socket) => {
       delete userSocketMap[userId]; 
       io.emit("getOnlineUser", Object.keys(userSocketMap)); 
     }
-    console.log(`User disconnected: ${socket.id}`);
+    
   });
 });
 

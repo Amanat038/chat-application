@@ -4,9 +4,9 @@ import { setSelectedUser } from "../redux/userSlice";
 
 const OtherUser = ({ user }) => {
    const dispatch = useDispatch();
-   const {selectedUser,onlineUsers} = useSelector(store => store.user);
+   const {selectedUser,onlineUsers,authUser} = useSelector(store => store.user);
    const isOnline = Array.isArray(onlineUsers) && onlineUsers.includes(user._id);
-
+   console.log("authUser",authUser.token)
    const selectedUserHandler = (user) => {
       dispatch(setSelectedUser(user));
    };
