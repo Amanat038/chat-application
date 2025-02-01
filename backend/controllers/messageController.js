@@ -269,9 +269,12 @@ export const editMessage = async (req, res) => {
       { new: true }
     );
 
-    if (!updatedMessage) {
-      console.log("Message not found");
-      return res.status(404).json({ message: "Message not found" });
+   if (!conversation || conversation.messages.length === 0) {
+      return res.status(200).json({
+        success: true,
+        message: "Let's start a conversation", 
+        messages: [],
+      });
     }
 
     console.log("Updated message:", updatedMessage);
