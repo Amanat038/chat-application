@@ -89,7 +89,7 @@ const Login = () => {
                <p className="mt-10 text-center text-black">
                   You don't Have an account?{" "}
                   <Link className="text-blue-500" to="/singup">
-                     SingUp
+                     SignUp
                   </Link>
                </p>
                <div>
