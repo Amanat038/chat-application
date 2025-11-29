@@ -161,7 +161,7 @@ const Signup = () => {
                      type="submit"
                      className="mt-2 text-xl text-white bg-green-600 border btn btn-block btn-sn border-slate-700"
                   >
-                     SingUp
+                     SignUp
                   </button>
                </div>
             </form>
